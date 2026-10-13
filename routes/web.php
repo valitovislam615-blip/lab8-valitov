@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', fn () => redirect()->route('catalog.index'));
@@ -22,3 +23,6 @@ Route::post('/feedback', [PageController::class, 'feedbackSend'])->name('feedbac
 Route::get('/hello/{name?}', function (string $name = 'гость') {
     return "Привет, {$name}!";
 })->where('name', '[\p{L}]+')->name('hello');
+
+// Маршруты для ЛПР № 9 (управление тренировками)
+Route::resource('trainings', TrainingController::class)->except(['show']);
